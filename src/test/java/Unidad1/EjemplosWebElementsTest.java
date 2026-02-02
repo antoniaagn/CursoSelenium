@@ -106,8 +106,8 @@ public class EjemplosWebElementsTest {
         Assertions.assertEquals("Login was unsuccessful. Please correct the errors and try again.\n" +
                 "The credentials provided are incorrect", driver.findElement(By.xpath("//form/div/div/span")).getText()+"\n"+driver.findElement(By.xpath("//form/div/div/ul/li")).getText());
 
-//CASO 3 HACER LOGIN CORRECTO
-        //LOGOUT
+//CASO 3 HACER LOGIN CORRECTO >> OK
+        //LOGOUT>> EN PROCESO
         //AGREGAR COMPRA A CARRITO
         //ERROR AL AGREGAR CODIGO DESCUENTO
         //ERROR AL AGRGAR GIFT CARD ERRONEO
@@ -144,6 +144,39 @@ public class EjemplosWebElementsTest {
 
         Assertions.assertEquals(resultadoEsperado,resultadoObtenido);
     }
+    @Test//Login correcto
 
+    public void Caso004_LogOut() throws InterruptedException {
+        Thread.sleep(1000); //espera
+        By locatorLinkLogin = By.linkText("Log in");//localizador
+
+        WebElement linkLogin = driver.findElement(locatorLinkLogin);
+        linkLogin.click();
+        Thread.sleep(1000);
+
+        //insertar mail
+        driver.findElement(By.id("Email")).sendKeys("antonia.agn@gmail.com");
+        Thread.sleep(1000);
+
+        //insertar pass
+        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("anto9563");
+        Thread.sleep(1000);
+
+        //boton login
+        driver.findElement(By.xpath("//input[@value='Log in']")).click();
+        Thread.sleep(1000);
+
+        //boton log out
+        driver.findElement(By.xpath("//a[contains(@class,'ico-logout')]")).click();
+        Thread.sleep(1000);
+
+        //validacion (Resultado esperado vs Resultado Obtenido)
+
+        String resultadoEsperado = "Log in";
+
+        String resultadoObtenido = driver.findElement(By.xpath("//a[contains(@class,'ico-login')]")).getText();
+
+        Assertions.assertEquals(resultadoEsperado,resultadoObtenido);
+    }
 
 }
