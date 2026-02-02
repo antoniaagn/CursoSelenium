@@ -1,5 +1,6 @@
 package Unidad1;
 
+import dev.failsafe.internal.util.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -114,34 +115,35 @@ public class EjemplosWebElementsTest {
 
     }
 
-//    @Test//Login correcto
-//
-//    public void Caso003_LoginCorrecto() throws InterruptedException {
-//        Thread.sleep(1000); //espera
-//        By locatorLinkLogin = By.linkText("Log in");//localizador
-//
-//        WebElement linkLogin = driver.findElement(locatorLinkLogin);
-//        linkLogin.click();
-//        Thread.sleep(1000);
-//
-//        //insertar mail
-//        driver.findElement(By.id("Email")).sendKeys("antonia.agn@gmail.com");
-//        Thread.sleep(1000);
-//
-//        //insertar pass
-//        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("anto9563");
-//        Thread.sleep(1000);
-//
-//        //boton login
-//        driver.findElement(By.xpath("//input[@value='Log in']")).click();
-//
-//        //validacion (Resultado esperado vs Resultado Obtenido)
-//
-//        Assertions.assertEquals("Log out",);
+    @Test//Login correcto
 
+    public void Caso003_LoginCorrecto() throws InterruptedException {
+        Thread.sleep(1000); //espera
+        By locatorLinkLogin = By.linkText("Log in");//localizador
 
+        WebElement linkLogin = driver.findElement(locatorLinkLogin);
+        linkLogin.click();
+        Thread.sleep(1000);
 
-       //     }
+        //insertar mail
+        driver.findElement(By.id("Email")).sendKeys("antonia.agn@gmail.com");
+        Thread.sleep(1000);
+
+        //insertar pass
+        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("anto9563");
+        Thread.sleep(1000);
+
+        //boton login
+        driver.findElement(By.xpath("//input[@value='Log in']")).click();
+
+        //validacion (Resultado esperado vs Resultado Obtenido)
+
+        String resultadoEsperado = "Log out";
+
+        String resultadoObtenido = driver.findElement(By.xpath("//a[contains(@class,'ico-logout')]")).getText();
+
+        Assertions.assertEquals(resultadoEsperado,resultadoObtenido);
+    }
 
 
 }
